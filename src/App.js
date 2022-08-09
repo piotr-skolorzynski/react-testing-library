@@ -26,7 +26,6 @@ function App() {
     if(signupInput.confirmPassword !== signupInput.password) {
       setError("The passwords don't match. Try again.")
     }
-    
   }
 
   return (

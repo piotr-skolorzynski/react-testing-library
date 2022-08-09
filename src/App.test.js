@@ -33,3 +33,19 @@ test("should be able to type a confirmed password", () => {
   userEvent.type(confirmPasswordInputElement, "pijMleko!22");
   expect(confirmPasswordInputElement.value).toBe("pijMleko!22")
 })
+
+test("should show email error message on invalid email", () => {
+  render(<App />)
+
+  const emailErrorElement = screen.queryByText(/the email you input is invalid/i);
+  expect(emailErrorElement).not.toBeInTheDocument();
+
+  const emailInputElement = screen.getByLabelText(/email/i);
+  userEvent.type(emailInputElement, "selenagmail.com");
+
+  const submitButtonElement = screen.getByRole("button", {name: /submit/i})
+  userEvent.click(submitButtonElement);
+
+  const emailErrorElementAgain = screen.queryByText(/the email you input is invalid/i);
+  expect(emailErrorElementAgain).toBeInTheDocument()
+})

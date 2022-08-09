@@ -49,3 +49,50 @@ test("should show email error message on invalid email", () => {
   const emailErrorElementAgain = screen.queryByText(/the email you input is invalid/i);
   expect(emailErrorElementAgain).toBeInTheDocument()
 })
+
+test("should show password error message if password is less than 5 characters", () => {
+  render(<App />);
+
+  const emailInputElement = screen.getByRole("textbox", {name: /email/i});
+  
+  const passwordInputElement = screen.getByLabelText("Password");
+
+  const passwordErrorElement = screen.queryByText(/the password you entered should contain 5 or more characters/i);
+
+  userEvent.type(emailInputElement, "selena@gmail.com");
+
+  expect(passwordErrorElement).not.toBeInTheDocument();
+
+  userEvent.type(passwordInputElement, "123");
+
+  const submitButtonElement = screen.getByRole("button", {name: /submit/i});
+
+  userEvent.click(submitButtonElement);
+
+  const passwordErrorElementAgain = screen.queryByText(/the password you entered should contain 5 or more characters/i);
+
+  expect(passwordErrorElementAgain).toBeInTheDocument();
+})
+
+test("should show confirm password error message if passwords don't match", () => {
+  render(<App />);
+
+  const emailInputElement = screen.getByRole("textbox", {name: /email/i});
+  const passwordInputElement = screen.getByLabelText("Password");
+  const confirmPasswordErrorElement = screen.queryByText(/the passwords don't match. try again/i);
+  const confirmPasswordInputElement = screen.getByLabelText(/confirm password/i);
+  const submitButtonElement = screen.getByRole("button", {name: /submit/i});
+  
+  userEvent.type(emailInputElement, "selena@gmail.com");
+  userEvent.type(passwordInputElement, "12345");
+
+  expect(confirmPasswordErrorElement).not.toBeInTheDocument();
+
+  userEvent.type(confirmPasswordInputElement, "123456");
+
+  userEvent.click(submitButtonElement);
+
+  const confirmPasswordErrorElementAgain = screen.queryByText(/the passwords don't match. try again/i);
+
+  expect(confirmPasswordErrorElementAgain).toBeInTheDocument();
+})

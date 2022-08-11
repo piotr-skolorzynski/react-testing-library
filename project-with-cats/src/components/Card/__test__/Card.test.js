@@ -27,5 +27,11 @@ describe('Card', () => {
         render(<Card {...cardProps} />);
         expect(screen.getByText(/laith@hotmail.com/i).toBeInTheDocument())
     });
+
+    test("should show image with correct src", () =>{
+        render(<App {...cardProps} />);
+
+        expect(screen.getByAltText(/cute cat/i).src).toBe(cardProps.image.url);
+    })
     
 });

@@ -15,23 +15,22 @@ const cardProps = {
 describe('Card', () => {
     test('should show name of cat', () => {
         render(<Card {...cardProps} />);
-        expect(screen.getByRole("heading", {name: /sydney/i}).toBeInTheDocument())
+        expect(screen.getByRole("heading", {name: /sydney/i})).toBeInTheDocument();
     });
 
     test('should show phone number', () => {
         render(<Card {...cardProps} />);
-        expect(screen.getByText(/111-111-111/i).toBeInTheDocument())
+        expect(screen.getByText(/111-111-111/i)).toBeInTheDocument();
     });
 
     test('should show email', () => {
         render(<Card {...cardProps} />);
-        expect(screen.getByText(/laith@hotmail.com/i).toBeInTheDocument())
+        expect(screen.getByText(/laith@hotmail.com/i)).toBeInTheDocument();
     });
 
     test("should show image with correct src", () =>{
-        render(<App {...cardProps} />);
+        render(<Card {...cardProps} />);
 
         expect(screen.getByAltText(/cute cat/i).src).toBe(cardProps.image.url);
     })
-    
 });

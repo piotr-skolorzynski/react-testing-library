@@ -1,4 +1,3 @@
-import './App.css';
 import Card from './components/Card/Card';
 
 const cardProps = {
@@ -14,7 +13,7 @@ const cardProps = {
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Card {...cardProps} />
     </div>
   );

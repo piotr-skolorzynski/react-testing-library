@@ -52,14 +52,14 @@ describe('Card', () => {
     test('should toggle heart status', () => {
         render(<Card {...cardProps} />);
 
-        userEvents.click(screen.getAllByRole("button"));
-
-        expect(screen.queryByAltText(/outlined heart/i)).toBeInTheDocument();
-        expect(screen.getByAltText(/filled heart/i)).not.toBeInTheDocument();
-
-        userEvents.click(screen.getAllByRole("button"));
+        userEvents.click(screen.getByRole("button"));
 
         expect(screen.queryByAltText(/outlined heart/i)).not.toBeInTheDocument();
         expect(screen.getByAltText(/filled heart/i)).toBeInTheDocument();
+
+        userEvents.click(screen.getByRole("button"));
+
+        expect(screen.queryByAltText(/filled heart/i)).not.toBeInTheDocument();
+        expect(screen.getByAltText(/outlined heart/i)).toBeInTheDocument();
     });
 });

@@ -17,7 +17,7 @@ const Filter = () => {
                 </select>
             </div>
         </div>
-    ); 
+    )
 };
 
 export default Filter;

@@ -10,7 +10,9 @@ const cardProps = {
         url: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
         alt: "cute cat"
     },
-    favoured: false
+    favoured: false,
+    updateFavourite: () => {},
+    index: 1
 }
 
 describe('Card', () => {

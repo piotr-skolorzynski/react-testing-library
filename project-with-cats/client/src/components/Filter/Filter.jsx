@@ -6,6 +6,12 @@ const Filter = ({filters, setFilters}) => {
                 <select name="favourite"
                         id="favourite"
                         className="form-select"
+                        onChange={(e) => {
+                            setFilters({
+                                ...filters,
+                                favoured: e.target.value === "favourite" ? true : false
+                            })
+                        }}
                 >
                     <option value="any">Any</option>
                     <option value="favourite">Favourite</option>
